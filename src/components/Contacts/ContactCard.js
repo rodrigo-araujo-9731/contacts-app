@@ -6,7 +6,9 @@ function ContactCard(props) {
     <div className='contact-card'>
       <img src={props.avatarUrl} alt='profile-pic' />
       <div className='user-details'>
-        <p>Name: {props.name}</p>
+        <p>
+          Name: {props.firstName} {props.lastName}
+        </p>
         <p>Email: {props.email}</p>
         <button
           onClick={() => {

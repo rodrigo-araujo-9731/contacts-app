@@ -1,37 +1,16 @@
-import React, { useState, useEffect } from 'react';
 import './App.css';
-import axios from 'axios';
-import ContactCard from './components/ContactCard';
+import Navbar from './components/Navbar/Navbar';
+import CardContainer from './components/Contacts/CardContainer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-
-  useEffect(() => {
-    try {
-      axios.get(`https://randomuser.me/api`).then((res) => {
-        console.log(res.data.results);
-        setContacts(res.data.results);
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  }, []);
-
   return (
-    <div>
-      {contacts.length > 0 &&
-        contacts.map((contacts, index) => {
-          return (
-            <ContactCard
-              key={index}
-              avatarUrl={contacts.picture.large }
-              name={contacts.name.first}
-              email={contacts.email}
-              age={contacts.dob.age}
-            />
-          );
-        })}
-    </div>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path='/' component={CardContainer} />
+      </Switch>
+    </Router>
   );
 }
 
